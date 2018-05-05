@@ -5,28 +5,30 @@ System.register([], function (exports_1, context_1) {
     return {
         setters: [],
         execute: function () {
-            Negociacao = class Negociacao {
-                constructor(data, quantidade, valor) {
+            Negociacao = (function () {
+                function Negociacao(data, quantidade, valor) {
                     this.data = data;
                     this.quantidade = quantidade;
                     this.valor = valor;
                 }
-                get volume() {
-                    return this.quantidade * this.valor;
-                }
-                paraTexto() {
+                Object.defineProperty(Negociacao.prototype, "volume", {
+                    get: function () {
+                        return this.quantidade * this.valor;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Negociacao.prototype.paraTexto = function () {
                     console.log('Impressão');
-                    console.log(`Data: ${this.data}
-            Quantidade: ${this.quantidade}, 
-            Valor: ${this.valor}, 
-            Volume: ${this.volume}`);
-                }
-                ehIgual(negociacao) {
+                    console.log("Data: " + this.data + "\n            Quantidade: " + this.quantidade + ", \n            Valor: " + this.valor + ", \n            Volume: " + this.volume);
+                };
+                Negociacao.prototype.ehIgual = function (negociacao) {
                     return this.data.getDate() == negociacao.data.getDate()
                         && this.data.getMonth() == negociacao.data.getMonth()
                         && this.data.getFullYear() == negociacao.data.getFullYear();
-                }
-            };
+                };
+                return Negociacao;
+            }());
             exports_1("Negociacao", Negociacao);
         }
     };

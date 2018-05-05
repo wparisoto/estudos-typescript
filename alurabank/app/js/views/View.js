@@ -15,21 +15,23 @@ System.register(["../helpers/decorators/index"], function (exports_1, context_1)
             }
         ],
         execute: function () {
-            View = class View {
-                constructor(seletor, escapar = false) {
+            View = (function () {
+                function View(seletor, escapar) {
+                    if (escapar === void 0) { escapar = false; }
                     this._elemento = $(seletor);
                     this._escapar = escapar;
                 }
-                update(model) {
-                    let template = this.template(model);
+                View.prototype.update = function (model) {
+                    var template = this.template(model);
                     if (this._escapar)
                         template = template.replace(/<script>[\s\S]*?<\/script>/g, '');
                     this._elemento.html(template);
-                }
-            };
-            __decorate([
-                index_1.logarTempoDeExecucao()
-            ], View.prototype, "update", null);
+                };
+                __decorate([
+                    index_1.logarTempoDeExecucao()
+                ], View.prototype, "update", null);
+                return View;
+            }());
             exports_1("View", View);
         }
     };

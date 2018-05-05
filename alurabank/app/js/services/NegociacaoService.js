@@ -9,19 +9,24 @@ System.register(["../models/index"], function (exports_1, context_1) {
             }
         ],
         execute: function () {
-            NegociacaoService = class NegociacaoService {
-                obterNegociacoes(handler) {
+            NegociacaoService = (function () {
+                function NegociacaoService() {
+                }
+                NegociacaoService.prototype.obterNegociacoes = function (handler) {
                     return fetch('http://localhost:8080/dadosx')
-                        .then(res => handler(res))
-                        .then(res => res.json())
-                        .then((dados) => dados
-                        .map(dado => new index_1.Negociacao(new Date(), dado.vezes, dado.montante)))
-                        .catch(err => {
+                        .then(function (res) { return handler(res); })
+                        .then(function (res) { return res.json(); })
+                        .then(function (dados) {
+                        return dados
+                            .map(function (dado) { return new index_1.Negociacao(new Date(), dado.vezes, dado.montante); });
+                    })
+                        .catch(function (err) {
                         console.log(err);
                         throw new Error('Não foi possível importar as negociações');
                     });
-                }
-            };
+                };
+                return NegociacaoService;
+            }());
             exports_1("NegociacaoService", NegociacaoService);
         }
     };

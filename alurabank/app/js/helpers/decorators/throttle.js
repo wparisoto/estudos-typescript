@@ -1,15 +1,21 @@
 System.register([], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    function throttle(milissegundos = 500) {
+    function throttle(milissegundos) {
+        if (milissegundos === void 0) { milissegundos = 500; }
         return function (target, propertyKey, descriptor) {
-            const metodoOriginal = descriptor.value;
-            let timer = 0;
-            descriptor.value = function (...args) {
+            var metodoOriginal = descriptor.value;
+            var timer = 0;
+            descriptor.value = function () {
+                var _this = this;
+                var args = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    args[_i] = arguments[_i];
+                }
                 if (event)
                     event.preventDefault();
                 clearInterval(timer);
-                timer = setTimeout(() => metodoOriginal.apply(this, args), milissegundos);
+                timer = setTimeout(function () { return metodoOriginal.apply(_this, args); }, milissegundos);
             };
             return descriptor;
         };

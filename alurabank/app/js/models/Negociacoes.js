@@ -5,24 +5,25 @@ System.register([], function (exports_1, context_1) {
     return {
         setters: [],
         execute: function () {
-            Negociacoes = class Negociacoes {
-                constructor() {
+            Negociacoes = (function () {
+                function Negociacoes() {
                     this._negociacoes = [];
                 }
-                adiciona(negociacao) {
+                Negociacoes.prototype.adiciona = function (negociacao) {
                     this._negociacoes.push(negociacao);
-                }
-                paraArray() {
+                };
+                Negociacoes.prototype.paraArray = function () {
                     return [].concat(this._negociacoes);
-                }
-                paraTexto() {
+                };
+                Negociacoes.prototype.paraTexto = function () {
                     console.log('Impressão');
                     console.log(JSON.stringify(this._negociacoes));
-                }
-                ehIgual(negociacoes) {
+                };
+                Negociacoes.prototype.ehIgual = function (negociacoes) {
                     return JSON.stringify(this._negociacoes) == JSON.stringify(negociacoes.paraArray());
-                }
-            };
+                };
+                return Negociacoes;
+            }());
             exports_1("Negociacoes", Negociacoes);
         }
     };

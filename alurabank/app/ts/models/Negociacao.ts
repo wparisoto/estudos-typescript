@@ -2,8 +2,10 @@ import { MeuObjeto } from './MeuObjeto';
 
 export class Negociacao implements MeuObjeto<Negociacao> {
     
-    constructor(readonly data: Date, readonly quantidade: number, readonly valor: number) {
+    private teste : number | string;
 
+    constructor(readonly data: Date, readonly quantidade: number, readonly valor: number) {
+        
     }
 
     get volume() {

@@ -1,5 +1,15 @@
 System.register(["./View"], function (exports_1, context_1) {
     "use strict";
+    var __extends = (this && this.__extends) || (function () {
+        var extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
     var __moduleName = context_1 && context_1.id;
     var View_1, NegociacoesView;
     return {
@@ -9,36 +19,18 @@ System.register(["./View"], function (exports_1, context_1) {
             }
         ],
         execute: function () {
-            NegociacoesView = class NegociacoesView extends View_1.View {
-                template(model) {
-                    return `
-        <table class="table table-hover table-bordered">
-            <thead>
-                <tr>
-                    <th>DATA</th>
-                    <th>QUANTIDADE</th>
-                    <th>VALOR</th>
-                    <th>VOLUME</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                ${model.paraArray().map(negociacao => `
-                        <tr>
-                            <td>${negociacao.data.getDate()}/${negociacao.data.getMonth() + 1}/${negociacao.data.getFullYear()}</td>
-                            <td>${negociacao.quantidade}</td>
-                            <td>${negociacao.valor}</td>
-                            <td>${negociacao.volume}</td>
-                        <tr>
-                    `).join('')}            
-            </tbody>
-
-            <tfoot>
-            </tfoot>
-        </table>
-        `;
+            NegociacoesView = (function (_super) {
+                __extends(NegociacoesView, _super);
+                function NegociacoesView() {
+                    return _super !== null && _super.apply(this, arguments) || this;
                 }
-            };
+                NegociacoesView.prototype.template = function (model) {
+                    return "\n        <table class=\"table table-hover table-bordered\">\n            <thead>\n                <tr>\n                    <th>DATA</th>\n                    <th>QUANTIDADE</th>\n                    <th>VALOR</th>\n                    <th>VOLUME</th>\n                </tr>\n            </thead>\n\n            <tbody>\n                " + model.paraArray().map(function (negociacao) {
+                        return "\n                        <tr>\n                            <td>" + negociacao.data.getDate() + "/" + (negociacao.data.getMonth() + 1) + "/" + negociacao.data.getFullYear() + "</td>\n                            <td>" + negociacao.quantidade + "</td>\n                            <td>" + negociacao.valor + "</td>\n                            <td>" + negociacao.volume + "</td>\n                        <tr>\n                    ";
+                    }).join('') + "            \n            </tbody>\n\n            <tfoot>\n            </tfoot>\n        </table>\n        ";
+                };
+                return NegociacoesView;
+            }(View_1.View));
             exports_1("NegociacoesView", NegociacoesView);
         }
     };
